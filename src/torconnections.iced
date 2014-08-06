@@ -28,13 +28,11 @@ exports.torconnection = class torconnection
     
 
 exports.torconnections = class torconnections
-  
   constructor : ({@pollInterval}) ->
     
   pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
-    # @parse cmdsample
     if error?
       resString = "error: " + error
       callback resString
@@ -46,7 +44,6 @@ exports.torconnections = class torconnections
       callback "OK"
     
   parse : (str) =>
-    console.log "PARSING"
     resArray = str.split("\n")
     @connections = []
     resArray.map (val) =>
