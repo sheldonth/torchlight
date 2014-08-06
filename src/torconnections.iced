@@ -8,12 +8,13 @@ exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
     
   
-  pollConnections : () =>
+  pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
     if error?
-      return "error: " + error
+      resString = "error: " + error
     else if stdout?
-      return "stdout: " + stdout
+      resString = "stdout: " + stdout
     else if stderr?
-      return "stderr: " + stderr
+      resString = "stderr: " + stderr
+    callback resString

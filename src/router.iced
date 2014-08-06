@@ -1,11 +1,12 @@
-{torconnections} = require 'torconnections' 
+{torconnections} = require './torconnections' 
 
 module.exports = (app) ->
   torConnections = new torconnections 1
   
   app.get '/', (req, res) ->
-    result = torConnections.pollConnections
-    res.json 200, 
+    await
+      torConnections.pollConnections defer resultString
+    res.json 200,
       status :
-        name : "OK"
-        data : result
+        name : "OK",
+        data : resultString
