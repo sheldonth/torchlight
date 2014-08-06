@@ -28,15 +28,15 @@ fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
 # this string parsing sucks
 exports.torconnection = class torconnection
   constructor : ({@ds}) ->
-    @proto = @ds.substring 0, 3
-    @pid = @ds.substring 8, 12
-    @process_user = @ds.substring 13, 23
-    @fd = @ds.substring 23, 29
-    @type = @ds.substring 29, 35
-    @device = @ds.substring 35, 43
-    @size = @ds.substring 43, 52
-    @node = @ds.substring 52, 57
-    @name = @ds.substring 58, @ds.length
+    @proto = @ds.substring(0, 3).trim()
+    @pid = @ds.substring(8, 12).trim()
+    @process_user = @ds.substring(13, 23).trim()
+    @fd = @ds.substring(23, 29).trim()
+    @type = @ds.substring(29, 35).trim()
+    @device = @ds.substring(35, 43).trim()
+    @size = @ds.substring(43, 52).trim()
+    @node = @ds.substring(52, 57).trim()
+    @name = @ds.substring(58, @ds.length).trim()
     splitPt = @name.indexOf ' '
     @state = @name.substring splitPt + 1, @name.length
     @connectionStatement = @name.substring 0, splitPt
@@ -47,6 +47,7 @@ exports.torconnection = class torconnection
     @destinationIP = @destination.split(":")[0]
     @destinationPort = @destination.split(":")[1]
     @geo = geoip.lookup(@destinationIP)
+    console.log @
 
 exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
