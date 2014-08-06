@@ -35,12 +35,15 @@ exports.torconnections = class torconnections
       child = exec fileDescriptorCommand, defer error, stdout, stderr
     # @parse cmdsample
     if error?
+      console.log error
       resString = "error: " + error
       callback resString
     else if stderr?
+      console.log stderr
       resString = "stderr: " + stderr
       callback resString
     else
+      console.log stdout
       @parse stdout
       callback "OK"
     
