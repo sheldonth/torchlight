@@ -6,7 +6,6 @@ module.exports = (app) ->
   app.get '/', (req, res) ->
     await
       torConnections.pollConnections defer resultString
-    console.log resultString
     if resultString is "OK"
       res.json 200,
         status :

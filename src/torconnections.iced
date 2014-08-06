@@ -33,11 +33,12 @@ exports.torconnections = class torconnections
   pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
+    # @parse cmdsample
     if error?
       resString = "error: " + error
       callback resString
     else if stderr?
-      return resString = "stderr: " + stderr
+      resString = "stderr: " + stderr
       callback resString
     else
       @parse stdout
