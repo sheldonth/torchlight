@@ -21,8 +21,9 @@ cmdsample = "tor     2141 debian-tor    4u  IPv4 5124282      0t0  UDP *:60300 \
 sys = require('sys')
 exec = require('child_process').exec;
 
-fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
+geoip = require('geoip-lite')
 
+fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
 
 # this string parsing sucks
 exports.torconnection = class torconnection
@@ -45,6 +46,7 @@ exports.torconnection = class torconnection
     @destination = @connectionStatement.split("->")[1]
     @destinationIP = @destination.split(":")[0]
     @destinationPort = @destination.split(":")[1]
+    @geo = geoip.lookup(@destinationIP)
 
 exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
@@ -52,24 +54,22 @@ exports.torconnections = class torconnections
   pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
-    @parse cmdsample
-    # if stdout?
-    #   console.log stdout
-    #   @parse stdout
-    #   callback "OK"
-    #   return
-    # else if error?
-    #   console.log error
-    #   resString = "error: " + error
-    #   callback resString
-    #   return
-    # else if stderr?
-    #   console.log stderr
-    #   resString = "stderr: " + stderr
-    #   callback resString
-    #   return
-    
-
+    # @parse cmdsample
+    if stdout?
+      console.log stdout
+      @parse stdout
+      callback "OK"
+      return
+    else if error?
+      console.log error
+      resString = "error: " + error
+      callback resString
+      return
+    else if stderr?
+      console.log stderr
+      resString = "stderr: " + stderr
+      callback resString
+      return
     
   parse : (str) =>
     resArray = str.split("\n")
@@ -78,6 +78,5 @@ exports.torconnections = class torconnections
       if val.length >= 85 #cutoff for other descriptors tor daemon keeps
         conn = new torconnection ds : val
         @connections.push conn
-      
-      
+
       
