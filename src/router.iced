@@ -16,5 +16,5 @@ module.exports = (app) ->
       res.json 500,
         status : 
           name : "error"
-          error : "We will try harder in the future"
+          error : resultString
           
