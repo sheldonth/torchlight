@@ -1,2 +1,3 @@
 lsof -c tor -n
 github.com/bluesmoon/node-geoip
+/etc/init.d/nginx start
