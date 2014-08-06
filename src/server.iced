@@ -8,11 +8,12 @@ cookieparser = require 'cookie-parser'
 cookiesession = require 'cookie-session'
 errorhandler = require 'errorhandler'
 
-runApp = (db) ->
+router = require './router'
+
+runApp = () ->
     console.log "process.cwd : #{process.cwd()}"
     console.log "__dirname : #{__dirname}"
     app = express()
-    app.set 'port', 80
     app.locals.pretty = true
     # app.set 'view engine', 'jade'
     # app.set 'views', './src/views/'
@@ -23,4 +24,9 @@ runApp = (db) ->
     app.use cookiesession secret: 'cookiesecret'
     logFile = fs.createWriteStream './torchlight.log', {flags: 'a'} # //use {flags: 'w'} to open in write mode
     app.use morgan({format : 'default', stream : logFile})
+    router app
     
+    http.createServer(app).listen 4002, () ->
+      console.log "HTTP Launched, Listening on 4002"
+    
+runApp()

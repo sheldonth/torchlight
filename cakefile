@@ -1,0 +1,10 @@
+require 'coffee-script/register'
+
+# CoffeeScript.register()
+
+{spawn, exec} = require 'child_process'
+{noisyExec} = require 'tafa-misc-util'
+
+task 'go', () ->
+    noisyExec "iced -cwo lib src"
+    noisyExec "hotnode lib/server.js"
