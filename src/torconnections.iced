@@ -44,7 +44,7 @@ exports.torconnections = class torconnections
       resString = "error: " + error
       callback resString
       return
-    else stderr?
+    else if stderr?
       console.log stderr
       resString = "stderr: " + stderr
       callback resString
