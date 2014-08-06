@@ -10,7 +10,9 @@ module.exports = (app) ->
       res.json 200,
         status :
           name : "OK",
-          data : torConnections.connections
+          connections : 
+            length : torConnections.connections.length
+            data : torConnections.connections
     else
       res.json 500,
         status : 
