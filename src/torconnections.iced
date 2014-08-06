@@ -43,6 +43,7 @@ exports.torconnections = class torconnections
     callback "OK"
     
   parse : (str) =>
+    console.log "PARSING"
     resArray = str.split("\n")
     @connections = []
     resArray.map (val) =>
