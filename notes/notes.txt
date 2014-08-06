@@ -1,0 +1,1 @@
+lsof -c tor -n
