@@ -10,4 +10,4 @@ task 'run', () ->
     noisyExec "hotnode lib/server.js"
     
 task 'compile', () ->
-    noisyExec "iced -cwo lib src"
+    noisyExec "iced -co lib src"
