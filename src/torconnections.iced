@@ -54,7 +54,7 @@ exports.torconnection = class torconnection
     if @originPort is ORPort
       @connectionType=connectiontypes[0] #Exit
     else
-      console.log @destinationIP
+      console.log @originPort + " " + ORPort
       @connectionType=connectiontypes[1]
 
 exports.torconnections = class torconnections
