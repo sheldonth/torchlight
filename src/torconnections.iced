@@ -51,7 +51,7 @@ exports.torconnection = class torconnection
     @destinationIP = @destination.split(":")[0]
     @destinationPort = @destination.split(":")[1]
     @geo = geoip.lookup(@destinationIP)
-    if @originPort is orPort
+    if @originPort is ORPort
       @connectionType=connectiontypes[0] #Exit
     else
       console.log @destinationIP
