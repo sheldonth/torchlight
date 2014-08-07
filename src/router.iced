@@ -5,7 +5,6 @@ module.exports = (app) ->
   app.set "torConnections", torConnections
   
   app.get '/', (req, res) ->
-    console.log req
     if torConnections.state is "OK"
       res.render 'home', 
         connections : torConnections.connections

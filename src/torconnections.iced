@@ -63,7 +63,7 @@ exports.torconnections = class torconnections
         if not @statistician
           @statistician = new statistician dataSet: @connections
         else
-          @statistician.processDataSet datum: @connections
+          @statistician.processDataSet dataSet: @connections
     , @pollInterval
 
   pollConnections : (callback) =>

@@ -35,10 +35,13 @@ runApp = () ->
       driver = websocket.http request
       driver.io.write body
       socket.pipe(driver.io).pipe(socket)
-      
+      tc = app.get 'torConnections'
       driver.on 'open', (event) ->
         console.log "Websocket Open"
-        console.log event
+        tc.statistician.subscribeSocket driver
+      driver.on 'close', (event) ->
+        console.log "Websocket Close"
+        tc.statistician.unsubscribeSocket driver
       driver.messages.on 'data', (message) ->
         console.log message
       driver.start()
