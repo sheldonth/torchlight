@@ -23,7 +23,7 @@ exec = require('child_process').exec;
 geoip = require('geoip-lite')
 ip = require ('ip')
 {connectiontypes, exit_policy} = require './enums'
-
+{statistician} = require './statistician'
 fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
 ORPort = 9011
 myIP = "173.255.196.30"
@@ -60,6 +60,10 @@ exports.torconnections = class torconnections
     @intervalTimer = setInterval () =>
       @pollConnections (str) =>
         @state = str
+        if not @statistician
+          @statistician = new statistician dataSet: @connections
+        else
+          @statistician.processDataSet datum: @connections
     , @pollInterval
 
   pollConnections : (callback) =>

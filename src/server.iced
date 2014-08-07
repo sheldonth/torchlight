@@ -7,7 +7,7 @@ bodyparser = require 'body-parser'
 cookieparser = require 'cookie-parser'
 cookiesession = require 'cookie-session'
 errorhandler = require 'errorhandler'
-
+websocket = require 'websocket-driver'
 router = require './router'
 
 runApp = () ->
@@ -26,7 +26,21 @@ runApp = () ->
     app.use morgan({format : 'default', stream : logFile})
     router app
     
-    http.createServer(app).listen 4002, () ->
+    server = http.createServer(app).listen 4002, () ->
       console.log "HTTP Launched, Listening on 4002"
+    
+    server.on 'upgrade', (request, socket, body) ->
+      if not websocket.isWebSocket request
+        return console.error "Bad Websocket Upgrade Request"
+      driver = websocket.http request
+      driver.io.write body
+      socket.pipe(driver.io).pipe(socket)
+      
+      driver.on 'open', (event) ->
+        console.log "Websocket Open"
+        console.log event
+      driver.messages.on 'data', (message) ->
+        console.log message
+      driver.start()
     
 runApp()

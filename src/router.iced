@@ -2,8 +2,10 @@
 
 module.exports = (app) ->
   torConnections = new torconnections pollInterval: 1000
+  app.set "torConnections", torConnections
   
   app.get '/', (req, res) ->
+    console.log req
     if torConnections.state is "OK"
       res.render 'home', 
         connections : torConnections.connections
