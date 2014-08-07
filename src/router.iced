@@ -9,7 +9,7 @@ module.exports = (app) ->
     if resultString is "OK"
       res.json 200,
         status :
-          name : "OK",
+          name : resultString,
           connections : 
             length : torConnections.connections.length
             data : torConnections.connections

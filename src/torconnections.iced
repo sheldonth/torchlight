@@ -23,7 +23,11 @@ exec = require('child_process').exec;
 
 geoip = require('geoip-lite')
 
+{connectiontypes, exit_policy} = require './enums'
+
 fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
+ORPort = 9030
+myIP = "173.255.196.30"
 
 # this string parsing sucks
 exports.torconnection = class torconnection
@@ -47,7 +51,10 @@ exports.torconnection = class torconnection
     @destinationIP = @destination.split(":")[0]
     @destinationPort = @destination.split(":")[1]
     @geo = geoip.lookup(@destinationIP)
-    console.log @
+    if @destinationPort in exit_policy and @originIP is myIP
+      @connectionType=connectiontypes[1] #Exit
+    else
+      @connectionType=connectiontypes[2]
 
 exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
