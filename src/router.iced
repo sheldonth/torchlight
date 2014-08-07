@@ -1,15 +1,13 @@
 {torconnections} = require './torconnections' 
 
 module.exports = (app) ->
-  torConnections = new torconnections 1
+  torConnections = new torconnections pollInterval: 1000
   
   app.get '/', (req, res) ->
-    await
-      torConnections.pollConnections defer resultString
-    if resultString is "OK"
+    if torConnections.state is "OK"
       res.json 200,
         status :
-          name : resultString,
+          name : torConnections.state,
           connections : 
             length : torConnections.connections.length
             data : torConnections.connections

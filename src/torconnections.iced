@@ -54,38 +54,41 @@ exports.torconnection = class torconnection
     if @originPort is ORPort
       @connectionType=connectiontypes[0] #Exit
     else
-      console.log @originPort + " " + ORPort
       @connectionType=connectiontypes[1]
 
 exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
-    
+    @intervalTimer = setInterval () =>
+      @pollConnections (str) =>
+        @state = str
+    , @pollInterval
+
   pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
-    # @parse cmdsample
-    if stdout?
-      # console.log stdout
-      @parse stdout
-      callback "OK"
-      return
-    else if error?
-      # console.log error
-      resString = "error: " + error
-      callback resString
-      return
-    else if stderr?
-      # console.log stderr
-      resString = "stderr: " + stderr
-      callback resString
-      return
+    @parse cmdsample
+    callback "OK"
+    # if stdout?
+    #   @parse stdout
+    #   callback "OK"
+    #   return
+    # else if error?
+    #   # console.log error
+    #   resString = "error: " + error
+    #   callback resString
+    #   return
+    # else if stderr?
+    #   # console.log stderr
+    #   resString = "stderr: " + stderr
+    #   callback resString
+    #   return
     
   parse : (str) =>
     resArray = str.split("\n")
-    @connections = []
+    connectionsArr = []
     resArray.map (val) =>
       if val.length >= 85 #cutoff for other descriptors tor daemon keeps
         conn = new torconnection ds : val
-        @connections.push conn
-
+        connectionsArr.push conn
+    @connections = connectionsArr
       
