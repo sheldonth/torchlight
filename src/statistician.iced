@@ -3,5 +3,4 @@
 exports.statistician = class statistician
   constructor : ({dataSet}) ->
     if not dataSet
-      console.log "CANNOT ALLOCATE statistician without DataSet"
-    
+      console.error "Cannot allocate statistician without DataSet"

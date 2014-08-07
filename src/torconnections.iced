@@ -20,7 +20,6 @@ cmdsample = "tor     2141 debian-tor    4u  IPv4 5124282      0t0  UDP *:60300 \
 
 sys = require('sys')
 exec = require('child_process').exec;
-
 geoip = require('geoip-lite')
 
 {connectiontypes, exit_policy} = require './enums'
@@ -66,22 +65,24 @@ exports.torconnections = class torconnections
   pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
-    @parse cmdsample
-    callback "OK"
-    # if stdout?
-    #   @parse stdout
-    #   callback "OK"
-    #   return
-    # else if error?
-    #   # console.log error
-    #   resString = "error: " + error
-    #   callback resString
-    #   return
-    # else if stderr?
-    #   # console.log stderr
-    #   resString = "stderr: " + stderr
-    #   callback resString
-    #   return
+    if not process.env.production
+      @parse cmdsample
+      callback "OK"
+      return
+    if stdout?
+      @parse stdout
+      callback "OK"
+      return
+    else if error?
+      # console.log error
+      resString = "error: " + error
+      callback resString
+      return
+    else if stderr?
+      # console.log stderr
+      resString = "stderr: " + stderr
+      callback resString
+      return
     
   parse : (str) =>
     resArray = str.split("\n")
