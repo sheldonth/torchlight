@@ -26,7 +26,7 @@ geoip = require('geoip-lite')
 {connectiontypes, exit_policy} = require './enums'
 
 fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
-ORPort = 9030
+ORPort = 9011
 myIP = "173.255.196.30"
 
 # this string parsing sucks
