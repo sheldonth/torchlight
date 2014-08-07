@@ -1,6 +1,5 @@
 module.exports.connectiontypes = [
   "Inbound",
-  "Exit",
   "Unknown"  
   ]
   

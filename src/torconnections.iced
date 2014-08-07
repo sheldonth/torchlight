@@ -51,11 +51,11 @@ exports.torconnection = class torconnection
     @destinationIP = @destination.split(":")[0]
     @destinationPort = @destination.split(":")[1]
     @geo = geoip.lookup(@destinationIP)
-    if @destinationIP is myIP
+    if @originPort is orPort
       @connectionType=connectiontypes[0] #Exit
     else
       console.log @destinationIP
-      @connectionType=connectiontypes[2]
+      @connectionType=connectiontypes[1]
 
 exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
