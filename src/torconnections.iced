@@ -51,8 +51,8 @@ exports.torconnection = class torconnection
     @destinationIP = @destination.split(":")[0]
     @destinationPort = @destination.split(":")[1]
     @geo = geoip.lookup(@destinationIP)
-    if @destinationPort in exit_policy and @originIP is myIP
-      @connectionType=connectiontypes[1] #Exit
+    if @destinationIP is myIP
+      @connectionType=connectiontypes[0] #Exit
     else
       @connectionType=connectiontypes[2]
 
@@ -62,22 +62,22 @@ exports.torconnections = class torconnections
   pollConnections : (callback) =>
     await
       child = exec fileDescriptorCommand, defer error, stdout, stderr
-    # @parse cmdsample
-    if stdout?
-      console.log stdout
-      @parse stdout
-      callback "OK"
-      return
-    else if error?
-      console.log error
-      resString = "error: " + error
-      callback resString
-      return
-    else if stderr?
-      console.log stderr
-      resString = "stderr: " + stderr
-      callback resString
-      return
+    @parse cmdsample
+    # if stdout?
+    #   # console.log stdout
+    #   @parse stdout
+    #   callback "OK"
+    #   return
+    # else if error?
+    #   # console.log error
+    #   resString = "error: " + error
+    #   callback resString
+    #   return
+    # else if stderr?
+    #   # console.log stderr
+    #   resString = "stderr: " + stderr
+    #   callback resString
+    #   return
     
   parse : (str) =>
     resArray = str.split("\n")
