@@ -21,7 +21,7 @@ cmdsample = "tor     2141 debian-tor    4u  IPv4 5124282      0t0  UDP *:60300 \
 sys = require('sys')
 exec = require('child_process').exec;
 geoip = require('geoip-lite')
-
+ip = require ('ip')
 {connectiontypes, exit_policy} = require './enums'
 
 fileDescriptorCommand = 'lsof -a -i 4 -c tor -n'
@@ -50,7 +50,7 @@ exports.torconnection = class torconnection
     @destinationIP = @destination.split(":")[0]
     @destinationPort = parseInt(@destination.split(":")[1])
     @geo = geoip.lookup(@destinationIP)
-    if @originPort is ORPort
+    if @originPort is ORPort and @originIP is ip.address()
       @connectionType=connectiontypes[0] #Exit
     else
       @connectionType=connectiontypes[1]

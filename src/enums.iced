@@ -4,7 +4,7 @@ module.exports.connectiontypes = [
   ]
   
 module.exports.exit_policy = [
-  20
+  20,
   21
   22
   23,
@@ -30,4 +30,19 @@ module.exports.exit_policy = [
   706,
   749,
   873,
+  902,
+  903,
+  904,
+  981,
+  989,
+  990,
+  991,
+  992,
+  993,
+  994,
+  995,
+  1194,
+  1220,
+  8332,
+  8333
   ]

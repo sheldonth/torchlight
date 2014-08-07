@@ -15,9 +15,9 @@ runApp = () ->
     console.log "__dirname : #{__dirname}"
     app = express()
     app.locals.pretty = true
-    # app.set 'view engine', 'jade'
-    # app.set 'views', './src/views/'
-    # app.use(express.static('./public'));
+    app.set 'view engine', 'jade'
+    app.set 'views', './src/views/'
+    app.use(express.static('./public'));
     app.use bodyparser.urlencoded extended: false
     app.use bodyparser.json()
     app.use cookieparser 'cookieparser'
