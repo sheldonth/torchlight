@@ -29,8 +29,8 @@ runApp = () ->
     server = http.createServer(app).listen 4002, () ->
       console.log "HTTP Launched, Listening on 4002"
     
-    server.on 'Upgrade', (request, socket, body) ->
-      console.log "Upgrade"
+    server.on 'upgrade', (request, socket, body) ->
+      console.log "upgrade"
       if not websocket.isWebSocket request
         return console.error "Bad Websocket Upgrade"
       driver = websocket.http request
