@@ -30,8 +30,9 @@ runApp = () ->
       console.log "HTTP Launched, Listening on 4002"
     
     server.on 'upgrade', (request, socket, body) ->
+      console.log "upgrade on " + req.path
       if not websocket.isWebSocket request
-        return console.error "Bad Websocket Upgrade Request"
+        return console.error "Bad Websocket Upgrade Request to Path: " + req.path
       driver = websocket.http request
       driver.io.write body
       socket.pipe(driver.io).pipe(socket)

@@ -8,6 +8,9 @@ module.exports = (app) ->
     if torConnections.state is "OK"
       res.render 'home', 
         connections : torConnections.connections
+        
+  app.get '/ws', (req, res) ->
+    res.send 200, "This endpoint is for ws:// only (HTML5 websocket)"
   
   app.get '/raw', (req, res) ->
     if torConnections.state is "OK"
