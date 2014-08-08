@@ -44,11 +44,15 @@ exports.torconnection = class torconnection
     @state = @name.substring splitPt + 1, @name.length
     @connectionStatement = @name.substring 0, splitPt
     @origin = @connectionStatement.split("->")[0]
-    @originIP = @origin.split(":")[0]
-    @originPort = parseInt(@origin.split(":")[1])
+    if @origin 
+      @originIP = @origin.split(":")[0]
+    if @origin 
+      @originPort = parseInt(@origin.split(":")[1])
     @destination = @connectionStatement.split("->")[1]
-    @destinationIP = @destination.split(":")[0]
-    @destinationPort = parseInt(@destination.split(":")[1])
+    if @destination 
+      @destinationIP = @destination.split(":")[0]
+    if @destination 
+      @destinationPort = parseInt(@destination.split(":")[1])
     @geo = geoip.lookup(@destinationIP)
     if @originPort is ORPort and @originIP is ip.address()
       @connectionType=connectiontypes[0] #Exit
