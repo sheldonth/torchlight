@@ -7,12 +7,11 @@ exports.statistician = class statistician
       console.error "Cannot allocate statistician without DataSet"
   
   processDataSet : ({dataSet}) =>
-    # console.log "processDataSet"
     for sockets in @subscribers
       messageDict = 
         event : "ConnectionCount"
         value : dataSet.length
-      sockets.text messageDict.toString()
+      sockets.text JSON.stringify(messageDict)
     
   subscribeSocket : (socket) =>
     @subscribers.push socket
