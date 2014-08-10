@@ -1,8 +1,8 @@
 
 
 handlers = 
-  "ConnectionCount" : (e) ->
-    $('#node-count').html e.value
+  "ConnectionCount" : (eventValue) ->
+    $('#node-count').html eventValue
 
 newConnection = () ->
   connection = new WebSocket('ws://torchlight.sheldonth.com/ws/')
@@ -17,8 +17,6 @@ newConnection = () ->
   connection.onmessage = (e) ->
     # console.log "onmessage" + e.data
     event = JSON.parse(e.data)
-    console.log event.event_type
-    console.log event.value
     if (handler = handlers[event.event_type])
       handler event.value
   
