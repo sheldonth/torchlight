@@ -9,7 +9,7 @@ exports.statistician = class statistician
   processDataSet : ({dataSet}) =>
     for sockets in @subscribers
       messageDict = 
-        event : "ConnectionCount"
+        event_type : "ConnectionCount"
         value : dataSet.length
       sockets.text JSON.stringify(messageDict)
     

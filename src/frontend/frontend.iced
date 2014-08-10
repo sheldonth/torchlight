@@ -1,6 +1,11 @@
 
+
+handlers = 
+  "ConnectionCount" : (e) ->
+    $('#node-count').html e.value
+
 newConnection = () ->
-  connection = new WebSocket('ws://localhost:4002/ws/')
+  connection = new WebSocket('ws://torchlight.sheldonth.com/ws/')
 
   connection.onopen = () ->
     console.log "onopen"
@@ -10,8 +15,12 @@ newConnection = () ->
     console.log error
   
   connection.onmessage = (e) ->
-    console.log "onmessage" + e.data
-    console.log JSON.parse(event.data)
+    # console.log "onmessage" + e.data
+    event = JSON.parse(e.data)
+    console.log event.event_type
+    console.log event.value
+    if (handler = handlers[event.event_type])
+      handler event.value
   
   return connection
 
