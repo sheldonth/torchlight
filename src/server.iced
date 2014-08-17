@@ -44,6 +44,8 @@ runApp = () ->
         console.log "Websocket Close"
         tc.statistician.unsubscribeSocket driver
       driver.messages.on 'data', (message) ->
+        # if message says subscribe to contract id xyz
+        # statistician subscribe driver
         console.log message
       driver.start()
     

@@ -1,4 +1,4 @@
-
+# analyzes the current state of things and pushes deltas to websocket subscribers
 
 exports.statistician = class statistician
   constructor : ({@dataSet}) ->
@@ -19,3 +19,5 @@ exports.statistician = class statistician
   unsubscribeSocket : (socket) =>
     @subscribers.splice @subscribers.indexOf(socket), 1
   
+  # i4isTor : (i4Addr) ->
+    

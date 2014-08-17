@@ -1,8 +1,12 @@
 {torconnections} = require './torconnections' 
+{torconsensus} = require './torconsensus'
 
 module.exports = (app) ->
   torConnections = new torconnections pollInterval: 1000
   app.set "torConnections", torConnections
+  
+  torConsensus = new torconsensus()
+  app.set "torConsensus", torConsensus
   
   app.get '/', (req, res) ->
     if torConnections.state is "OK"
