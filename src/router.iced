@@ -8,7 +8,7 @@ module.exports = (app) ->
   torConsensus = new torconsensus()
   app.set "torConsensus", torConsensus
   
-  # console.log torConsensus
+  console.log torConsensus.toString()
   
   app.get '/', (req, res) ->
     if torConnections.state is "OK"

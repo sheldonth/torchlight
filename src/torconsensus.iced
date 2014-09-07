@@ -6,12 +6,14 @@ _ = require('underscore')
 
 consensusHeaderNumLines = 11
 
+consensusNumberOfDirectories = 9
+
 exports.torconsensus = class torconsensus
   constructor: () ->
     if process.env.production
-      @filePath = "" # path here is var/lib/tor/cached-consensus but this can only be read as root or debian-tor user
-    else
-      @filePath = process.cwd() + "/tor/cached-consensus"
+      @filePath = "/var/lib/tor/cached-consensus" # path here is var/lib/tor/cached-consensus but this can only be read as root or debian-tor user
+    else 
+      @filePath = process.cwd() + "/tor/cached-consensus" #read a local copy of the data from the directory (not checked into source control)
     @readConsensus @filePath
     @readDate = new Date()
   
@@ -63,4 +65,12 @@ exports.torconsensus = class torconsensus
       .map (line) =>
         if @readIndex < consensusHeaderNumLines
           result = @readHeaderLine line, @readIndex
+        else
+          # if it starts with dir-source
+          # if line.slice(0, 10) is "dir-source"
+            # we just started a directory, start a three line directory
+          # else if line.slice()
+          # isInObject = no
+          # parseAuthority @readHeaderLine % 3
+          
         @readIndex++
