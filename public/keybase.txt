@@ -1,0 +1,71 @@
+==================================================================
+https://keybase.io/sheldonth
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://torchlight.sheldonth.com
+  * I am sheldonth (https://keybase.io/sheldonth) on keybase.
+  * I have a public key with fingerprint 07CD 0766 CFE6 05BE D9DD  0902 C117 9A44 7F4E 7B46
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "07cd0766cfe605bed9dd0902c1179a447f4e7b46",
+            "host": "keybase.io",
+            "key_id": "c1179a447f4e7b46",
+            "uid": "edb2881d9f627936f1c232c247999d00",
+            "username": "sheldonth"
+        },
+        "revoke": {
+            "sig_ids": [
+                "217ff544bb798befdf4da25988c4007c0e46298dfcd5fd0cb8557572ade0f1b50f"
+            ]
+        },
+        "service": {
+            "hostname": "torchlight.sheldonth.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1410052915,
+    "expire_in": 157680000,
+    "prev": "d6e63c4a01016983745b81f5fc3df4488e65f15d3cb4920c2234cd2c96884645",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+Comment: GPGTools - http://gpgtools.org
+
+owFtUmlIFFEc39VOLbRvkUY1YAUu8ubNm2uhiAgKCiI6iLZaZt6xO2kz28y0KpYI
+ZRfdUH2IIioICkPooChNZLGsyDLpMiErKKPTyi6t3kj1qffl8f7v9/8df/67R2eH
+ssLD25rz3ue3jgzf6DFDi3LPqFWC6ZBKIVollNLBi1l2grop17J9ISoAFROgKgpm
+VAGySYlOCNABxKKo6gZCKkNUNZEiRISk4wUdnMY0PFpiObzGH3GL8Op/8GsHPygx
+oaaJRGcKVHVJYSKGEsQQqbquEwACoEdd21hNOdpL0jLi2H5SWB8RXJp2Smng2bMS
+XMYTojEBiipjMkKmqeqaSRlhiBhQ1jUNI8DTAIoUqGuEYSIzArCpybIqq9AgFDDR
+lAETVnBuLpm28CB5kOuPvO+4OFlmJZJ+yT8nJdhZzU2mXMd3sFPGUUnfT0UDg35l
+Kugqp2b8D1/ctGzCB8wb0tT1LMcWoiJHYt8KBEQkAiBDXZQjAq1IWS6NWwFCVhUN
+8BPI0DSnJApVJIwMIAJR0TVJRbKpiUxmWOKBkaZRRWaiTCRsIh0CDKGEMIFYVzQN
+KUjm+l4BXWM7QhRxn0YimK2VsA1/rUuF9Tlbw4VDQuGs0LChWcGShHJG5v/dnBe3
+R4Qa6xYXdRC8f2pLyRDWduRmw50p1sDngsjO18Wx48OedL1qffw262D9g6baH1fr
+el+9mHqvOdZS3F9fOL8CrvuEOzMTOjNjZy0+9mhDU96oogMPK1ofZ8LbVu459PNt
+Q/mqSdO2zGlcGppx9G7t3IkDbf09y/OqOy/N6qm5WNXXeCXdXv9p+8fDzePHbfx1
+6mtd/vnu/pkVW69/qbYbFjw7XW3lbVpyZHJ2y8veWE5u5ZruZ9/n6ZH755bF6Oay
+joVdRl/tiOyZW9pDt/YVTLwOpfjJbWNiYMWOD4UDT0HH7r29z42YV/6mZekF8fLJ
+2zVnM9fArkzT5lHq+W/Tn+5kxbWPTsyW3v0G
+=e5ir
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/sheldonth
+
+==================================================================

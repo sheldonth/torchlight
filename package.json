@@ -42,7 +42,8 @@
     "websocket-driver": "0.3.5",
     "lazy": "1.0.11",
     "string": "2.0.0",
-    "moment": "2.8.2"
+    "moment": "2.8.2",
+    "underscore": "1.7.0"
   },
   "devDependencies": {
     "gulp-compass": "~1.1.8",

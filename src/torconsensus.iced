@@ -2,6 +2,7 @@ fs = require('fs')
 lazy = require('lazy')
 S = require('string')
 moment = require('moment')
+_ = require('underscore')
 
 consensusHeaderNumLines = 11
 
@@ -12,20 +13,43 @@ exports.torconsensus = class torconsensus
     else
       @filePath = process.cwd() + "/tor/cached-consensus"
     @readConsensus @filePath
+    @readDate = new Date()
   
-  readHeaderLine: (line, lineNo) ->
-    if lineNo is 1
-      return @networkStatusVersion = S(line).right 1
-    else if lineNo is 2
+  readHeaderLine: (line, lineNo) =>
+    if lineNo is 0
+      return @networkStatusVersion = S(line).right(1).s
+    else if lineNo is 1
       return @voteStatus = line.split(" ")[1]
-    else if lineNo is 3
+    else if lineNo is 2
       return @consensusMethod = line.split(" ")[1]
+    else if lineNo is 3
+      return @validAfterDate = moment(S(line).chompLeft("valid-after ").s)
     else if lineNo is 4
-      return @validAfterDate = moment line.splice(12, line.length)
+      return @freshUntilDate = moment(S(line).chompLeft("fresh-until ").s)
+    else if lineNo is 5
+      return @validUntilDate = moment(S(line).chompLeft("valid-until ").s)
+    else if lineNo is 6
+      return @votingDelayValues = line.split(" ")[1]
+    else if lineNo is 7
+      versionList = line.split(" ")[1]
+      return @clientVersionList = versionList.split(",")
+    else if lineNo is 8
+      versionList = line.split(" ")[1]
+      return @serverVersionList = versionList.split(",")
+    else if lineNo is 9
+      knownFlagsArray = line.split(" ")
+      return @knownFlags = _.rest knownFlagsArray
+    else if lineNo is 10
+      paramsArray = line.split(" ")
+      resDict = {}
+      for param in _.rest paramsArray
+        kv = param.split("=")
+        key = kv[0]
+        value = kv[1]
+        resDict[key] = value
+      return @params = resDict
       
-      
-      
-  readConsensus: (path) ->
+  readConsensus: (path) =>
     @readFileHeader = yes
     @readIndex = 0
     # await
@@ -39,5 +63,4 @@ exports.torconsensus = class torconsensus
       .map (line) =>
         if @readIndex < consensusHeaderNumLines
           result = @readHeaderLine line, @readIndex
-          console.log result
         @readIndex++
