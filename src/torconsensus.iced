@@ -68,9 +68,11 @@ exports.torconsensus = class torconsensus
         else
           # if it starts with dir-source
           sl = S(line)
-          if sl.contains "dir-source" or sl.contains "contact" or sl.contains "vote-digest"   
+          if sl.contains "dir-source" or sl.contains "contact" or sl.contains "vote-digest"
+            console.log "this"
             # we just started a directory, start a three line directory
           else
+            console.log "that"
             # parse a current router
           
           isInObject = no
