@@ -71,11 +71,12 @@ exports.torconsensus = class torconsensus
           if sl.contains "dir-source" or sl.contains "contact" or sl.contains "vote-digest"
             console.log "this"
             # we just started a directory, start a three line directory
+            
           else
             console.log "that"
             # parse a current router
           
-          isInObject = no
-          parseAuthority @readHeaderLine % 3
+          # isInObject = no
+          # parseAuthority @readHeaderLine % 3
           
         @readIndex++
