@@ -19,3 +19,8 @@ drwx--S---  2 debian-tor debian-tor     4096 Aug  7 17:29 keys/
 -rw-------  1 debian-tor debian-tor        0 Jul 30 16:12 lock
 -rw-------  1 debian-tor debian-tor     8196 Aug 10 17:29 state
 drwx--S---  2 debian-tor debian-tor     4096 Aug 10 16:12 stats/
+
+Alternate Service Providers:
+torstatus.blutmagie.de
+dan.me.uk/tornodes
+proxy.org/tor.shtml

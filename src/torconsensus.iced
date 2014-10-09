@@ -70,10 +70,11 @@ exports.torconsensus = class torconsensus
           sl = S(line)
           if sl.contains "dir-source" or sl.contains "contact" or sl.contains "vote-digest"   
             # we just started a directory, start a three line directory
+            
           else
             # parse a current router
           
-          isInObject = no
-          parseAuthority @readHeaderLine % 3
+          # isInObject = no
+          # parseAuthority @readHeaderLine % 3
           
         @readIndex++
