@@ -1,3 +1,5 @@
+# Reads the open file descriptors on the system using *nix lsof and parsing the result
+
 ## Formatted
 # tor     2141 debian-tor    4u  IPv4 5124282      0t0  UDP *:60300 
 # tor     2141 debian-tor    7u  IPv4  904593      0t0  TCP 127.0.0.1:9050 (LISTEN)
