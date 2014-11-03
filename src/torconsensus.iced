@@ -125,14 +125,3 @@ exports.torconsensus = class torconsensus
     
     lr.on 'end', () =>
       console.log "===> " + @authorities.length + " " + @routers.length
-    
-    # await
-    #   fs.readFile path, {encoding: "utf8"}, defer err, data
-    # console.log data
-    
-    # rs = fs.createReadStream(path)
-    # rs.setEncoding 'utf8'
-    # lazy(rs)
-    #   .lines
-    #   .map (String)
-    #   .map (line) =>

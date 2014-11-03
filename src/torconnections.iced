@@ -61,10 +61,6 @@ exports.torconnection = class torconnection
     else
       @connectionType=connectiontypes[1]
 
-exports.tordescriptor = class tordescriptor
-  constructor : ({@descriptor}) ->
-    console.log @descriptor
-
 exports.torconnections = class torconnections
   constructor : ({@pollInterval}) ->
     @intervalTimer = setInterval () =>
