@@ -8,12 +8,11 @@ module.exports = (app) ->
   torConsensus = new torconsensus()
   app.set "torConsensus", torConsensus
   
-  console.log torConsensus.toString()
-  
   app.get '/', (req, res) ->
     if torConnections.state is "OK"
       res.render 'home', 
         connections : torConnections.connections
+        consensus : torConsensus
         
   app.get '/ws', (req, res) ->
     res.send 200, "This endpoint is for ws:// only (HTML5 websocket)"
