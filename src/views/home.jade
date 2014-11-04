@@ -2,21 +2,25 @@ script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
 script(src='js/frontend.js')
 br
 center
-  h2 TorchLight - Tor Network Status
-  br
-  
+  h1 Torch Light
+  h4 Tor Network Status & API
   br
   h3 Current # of Onion Routing Sockets:
   h3#node-count #{connections.length}
   br
+  h3 The current concensus method is #{connections.length}
+  h3 The network consensus began at #{consensus.validAfterDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
+  h3 The network consensus is fresh until #{consensus.freshUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
+  h3 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
   br
-  h2 #{consensus.routers.length} routers
+  h3 The server version list is #{consensus.serverVersionList}
+  h3 The known routers flags are #{consensus.knownFlags}
+  br
+  h3 There are #{consensus.routers.length} routers and #{consensus.authorities.length} authorities.
   h4
     a(href="/raw") JSON
     br
     br
     a(href="http://github.com/sheldonth/torchlight") Source
-  
-  
-  h6 bitcoin test
-    a(href="bitcoin:msj42CCGruhRsFrGATiUuh25dtxYtnpbTx?r=https%3A%2F%2Fbitcoincore.org%2F%7Egavin%2Ff.php%3Fh%3D8f7ecda6427032c71bb5670d5f35f62d&amount=0.01") link
+    
+    

@@ -40,6 +40,9 @@ exports.torconsensus = class torconsensus
   refresh: () =>
     @lastConsensusReadDate = new Date()
     @readConsensus @filePath
+    
+  formattedKnownFlags = () =>
+    
   
   readHeaderLine: (line, lineNo) =>
     if lineNo is 0
