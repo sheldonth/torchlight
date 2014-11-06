@@ -1,5 +1,10 @@
-script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
 script(src='js/frontend.js')
+link(rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css")
+link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css")
+script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+
 br
 center
   h1 Torch Light
@@ -17,6 +22,20 @@ center
   h3 The known routers flags are #{consensus.knownFlags}
   br
   h3 There are #{consensus.routers.length} routers and #{consensus.authorities.length} authorities.
+    table.table-striped.table-bordered
+        tr
+            th header1
+            th header2
+            th header3
+        tr
+            td row1
+            td row2
+            td row3
+        tr
+            td row1
+            td row2
+            td row3
+  
   h4
     a(href="/raw") JSON
     br

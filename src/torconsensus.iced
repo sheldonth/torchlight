@@ -42,6 +42,7 @@ exports.torconsensus = class torconsensus
     @readConsensus @filePath
     
   formattedKnownFlags = () =>
+    fmtString = ""
     
   
   readHeaderLine: (line, lineNo) =>
