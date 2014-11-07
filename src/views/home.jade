@@ -28,13 +28,16 @@ center
         tr
             th #
             th Name
-            th Country
+            th Location
             th IP
         each router, index in consensus.routers
             tr
                 td= index
                 td= router.name
-                td= Country
+                if router.geo.city
+                    td= router.geoString
+                else
+                    td= router.geo.country
                 td= router.IP
   
   h4

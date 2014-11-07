@@ -7,6 +7,7 @@ S = require('string')
 moment = require('moment')
 _ = require('underscore')
 lineByLine = require('line-by-line')
+geoip = require('geoip-lite')
 
 consensusHeaderNumLines = 11
 
@@ -29,6 +30,8 @@ exports.torrouter = class torrouter
     @name = components[1]
     @origDateString = components[4] + ' ' + components[5]
     @IP = components[6]
+    @geo = geoip.lookup(@IP)
+    @geoString = @geo.city + ", " + @geo.country
     @onionPort = components[7]
     @directoryPort = components[8]
     
