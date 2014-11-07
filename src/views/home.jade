@@ -26,17 +26,16 @@ center
   p
     table.table-striped.table-bordered
         tr
-            th header1
-            th header2
-            th header3
-        tr
-            td row1
-            td row2
-            td row3
-        tr
-            td row1
-            td row2
-            td row3
+            th #
+            th Name
+            th Country
+            th IP
+        each router, index in consensus.routers
+            tr
+                td= index
+                td= router.name
+                td= Country
+                td= router.IP
   
   h4
     a(href="/raw") JSON
