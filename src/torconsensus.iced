@@ -20,12 +20,39 @@ consensusNumberOfDirectories = 9
 
 exports.tordirectorysig = class tordirectorysig
   constructor: (@signatureLine) ->
+    # imagine the day we do a cryptographic validation of sigs here
 
+# the five line description, each line starts with a letter
 exports.torrouter = class torrouter
-  constructor: (@routeLine) ->
+  constructor: (@routerLine) ->
+    components = @routerLine.split ' '
+    @name = components[1]
+    @origDateString = components[4] + ' ' + components[5]
+    @IP = components[6]
+    @onionPort = components[7]
+    @directoryPort = components[8]
+    
+  setFlagLine: (flagLine) =>
+    @flags = flagLine.split ' '
+  
+  setVersionLine: (versionLine) =>
+    components = versionLine.split ' '
+    @versionTitle = components[0]
+    @versionNumber = components[1]
+    
+  setBandwidthLine: (@bandwidthLine) =>
+    @bandwidthValue = @bandwidthLine.split('=')[1]
+    
+  setPolicyLine: (policyLine) =>
+    components = policyLine.split ' '
+    @policyType = components[1]
+    @policyString = components[2]
+    @policys = @policyString.split ','
+    
 
 exports.torauthority = class torauthority
   constructor: (@sourceLine) ->
+    
 
 # this class is a representation of the cached-consensus file
 exports.torconsensus = class torconsensus
@@ -41,9 +68,12 @@ exports.torconsensus = class torconsensus
     @lastConsensusReadDate = new Date()
     @readConsensus @filePath
     
-  formattedKnownFlags = () =>
-    fmtString = ""
-    
+  flagsString:  () =>
+    str = ""
+    for flag, index in @knownFlags
+      str += @knownFlags[index] + ", "
+    string = S(str).chompRight ", "
+    return string.s
   
   readHeaderLine: (line, lineNo) =>
     if lineNo is 0
@@ -106,15 +136,15 @@ exports.torconsensus = class torconsensus
         # console.log S(flagChar).length
         # process.stdout.write flagChar
         if flagChar is "r"
-          lastRouter = new torrouter(routeLine:line)
+          lastRouter = new torrouter(line)
         else if flagChar is "s"
-          lastRouter.flagLine = line
+          lastRouter.setFlagLine line
         else if flagChar is "v"
-          lastRouter.versionLine = line
+          lastRouter.setVersionLine line
         else if flagChar is "w"
-          lastRouter.bandwidthLine = line
+          lastRouter.setBandwidthLine line
         else if flagChar is "p"
-          lastRouter.policyLine = line
+          lastRouter.setPolicyLine line
           @routers.push lastRouter
       # else, do the dir-source, contact, vote-digest dance
       else if sl.startsWith "bandwidth-heights"

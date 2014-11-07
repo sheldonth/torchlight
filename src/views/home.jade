@@ -19,9 +19,11 @@ center
   h3 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
   br
   h3 The server version list is #{consensus.serverVersionList}
-  h3 The known routers flags are #{consensus.knownFlags}
+  h3 The known routers flags are #{consensus.flagsString()}.
   br
-  h3 There are #{consensus.routers.length} routers and #{consensus.authorities.length} authorities.
+  h3 There are #{consensus.routers.length} routers currently in the network concensus.
+  br
+  p
     table.table-striped.table-bordered
         tr
             th header1
