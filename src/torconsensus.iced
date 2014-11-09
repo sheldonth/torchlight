@@ -31,7 +31,10 @@ exports.torrouter = class torrouter
     @origDateString = components[4] + ' ' + components[5]
     @IP = components[6]
     @geo = geoip.lookup(@IP)
-    @geoString = @geo.city + ", " + @geo.country
+    if @geo?
+        @geoString = @geo.city + ', ' + @geo.country
+    else
+        @geoString = ''
     @onionPort = components[7]
     @directoryPort = components[8]
     
