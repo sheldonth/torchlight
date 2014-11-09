@@ -126,7 +126,7 @@ exports.torconsensus = class torconsensus
         skipEmptyLines: false
     
     lr.on 'error', (err) =>
-      console.log "lr had " + err
+      console.error "LineReading had error:" + err
       
     lr.on 'line', (line) =>
       sl = S(line)
@@ -165,4 +165,4 @@ exports.torconsensus = class torconsensus
       @readIndex++
     
     lr.on 'end', () =>
-      console.log "===> " + @authorities.length + " " + @routers.length
+      console.log "Authorities ===> " + @authorities.length + " Routers ===> " + @routers.length
