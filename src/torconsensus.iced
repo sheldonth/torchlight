@@ -68,11 +68,11 @@ exports.torconsensus = class torconsensus
     else 
       @filePath = process.cwd() + "/tor/cached-consensus" #read a local copy of the data from the directory (not checked into source control)
     @creationDate = new Date()
-    @refresh()
   
-  refresh: () =>
+  refresh: (cb) =>
     @lastConsensusReadDate = new Date()
     @readConsensus @filePath
+    @callback = cb
     
   flagsString:  () =>
     str = ""
@@ -168,4 +168,5 @@ exports.torconsensus = class torconsensus
       @readIndex++
     
     lr.on 'end', () =>
-      console.log "Authorities ===> " + @authorities.length + " Routers ===> " + @routers.length
+        @callback()
+        console.log "Authorities ===> " + @authorities.length + " Routers ===> " + @routers.length

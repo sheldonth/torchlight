@@ -14,9 +14,10 @@ center
   h3#node-count #{connections.length}
   br
   h3 The current concensus method is #{connections.length}
-  h3 The network consensus began at #{consensus.validAfterDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
-  h3 The network consensus is fresh until #{consensus.freshUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
-  h3 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")}.
+  h3 The network consensus began at #{consensus.validAfterDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  h3 The network consensus is fresh until #{consensus.freshUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  h3 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  h3 Page render time was #{time.utc().format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
   br
   h3 The server version list is #{consensus.serverVersionList}
   h3 The known routers flags are #{consensus.flagsString()}.
