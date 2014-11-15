@@ -7,6 +7,9 @@ torConsensus = new torconsensus()
 
 doRecursiveRead = () ->
   nextReadOperation = new schedule.scheduleJob torConsensus.freshUntilDate._d, () ->
+      console.log "A read was made at:"
+      console.log new Date()
+      console.log" ********"
       torConsensus.refresh doRecursiveRead
 
 module.exports = (app) ->
