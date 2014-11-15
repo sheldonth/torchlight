@@ -13,16 +13,16 @@ center
   h3 Current # of Onion Routing Sockets:
   h3#node-count #{connections.length}
   br
-  h3 The current concensus method is #{consensus.consensusMethod}
-  h3 The network consensus began at #{consensus.validAfterDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
-  h3 The network consensus is fresh until #{consensus.freshUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
-  h3 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
-  h3 Page render time was #{time.utc().format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  h4 The current concensus method is #{consensus.consensusMethod}
+  h4 The network consensus began at #{consensus.validAfterDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  h4 The network consensus is fresh until #{consensus.freshUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  h4 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
+  p Page render time was #{time.utc().format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
   br
-  h3 The server version list is #{consensus.serverVersionList}
-  h3 The known routers flags are #{consensus.flagsString()}.
+  p The server version list is #{consensus.serverVersionList}
+  p The known routers flags are #{consensus.flagsString()}.
   br
-  h3 There are #{consensus.routers.length} routers currently in the network concensus.
+  p There are #{consensus.routers.length} routers currently in the network concensus.
   br
   p
     table.table-striped.table-bordered

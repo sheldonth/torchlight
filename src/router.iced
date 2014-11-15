@@ -6,11 +6,14 @@ schedule = require 'node-schedule'
 torConsensus = new torconsensus()
 
 doRecursiveRead = () ->
-  nextReadOperation = new schedule.scheduleJob torConsensus.freshUntilDate._d, () ->
+  if process.env.production
+    nextReadOperation = new schedule.scheduleJob torConsensus.freshUntilDate._d, () ->
       console.log "A read was made at:"
       console.log new Date()
       console.log "********"
       torConsensus.refresh doRecursiveRead
+  else
+    await torConsensus.refresh defer()
 
 module.exports = (app) ->
   torConnections = new torconnections pollInterval: 1000
