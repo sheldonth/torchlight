@@ -16,7 +16,7 @@ center
   h3 Current # of Onion Routing Sockets:
   h3#node-count #{connections.length}
   br
-  h4 The current concensus method is #{consensus.consensusMethod}
+  h4 The current consensus method is #{consensus.consensusMethod}
   h4 The network consensus began at #{consensus.validAfterDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
   h4 The network consensus is fresh until #{consensus.freshUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
   h4 The network consensus is valid until #{consensus.validUntilDate.format("dddd, MMMM Do YYYY, h:mm:ss a")} GMT.
@@ -25,14 +25,30 @@ center
   p The server version list is #{consensus.serverVersionList}
   p The known routers flags are #{consensus.flagsString()}.
   br
-  p There are #{consensus.authorities.length} authorities currently in the network concensus.
+  p There are #{consensus.authorities.length} authorities currently in the network consensus.
   br
-  p There are #{consensus.routers.length} routers currently in the network concensus.
   p
     table.table-striped.table-bordered.tlbigtable
         tr
             th #
+            th router nickname
+            th contact info
+            th address
+            th IP
+            th directory port
+            th onion routing port
+        each authority, index in consensus.authorities
+            tr
+                td= index + 1
+                td= authority.nickname
+                td= authority.contactLine
+                td= authority.address
+                td= authority.IP
+                td= authority.dirPort
+                td= authority.orPort
             
+  br
+  p There are #{consensus.routers.length} routers currently in the network consensus.
   br
   p
     table.table-striped.table-bordered.tlbigtable
@@ -43,7 +59,7 @@ center
             th IP
         each router, index in consensus.routers
             tr
-                td.indexHeader= index
+                td.indexHeader= index + 1
                 td.nameColumn= router.name
                 td= router.geoString
                 //- if router.geo.city

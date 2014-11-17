@@ -169,7 +169,6 @@ exports.torauthority = class torauthority
   
   setContactLine: (@contactLine) =>
     
-
   setVoteDigestLine: (@voteDigestLine) =>
     components = @voteDigestLine.split ' '
     @voteDigest = components[1]
