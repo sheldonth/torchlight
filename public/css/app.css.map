@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAW;EACP,KAAK,EAAE,GAAG;;AAEd,YAAY;EACR,KAAK,EAAE,EAAE;;AAGb,WAAW;EACP,KAAK,EAAE,GAAG",
+"sources": ["../../src/frontend/app.sass"],
+"names": [],
+"file": "app.css"
+}

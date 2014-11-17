@@ -5,6 +5,9 @@ link(rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/
 link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css")
 script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
 
+link(rel='stylesheet' href="css/app.css")
+link(rel='stylesheet' href="css/app.css.map")
+
 br
 center
   h1 Torch Light
@@ -22,19 +25,21 @@ center
   p The server version list is #{consensus.serverVersionList}
   p The known routers flags are #{consensus.flagsString()}.
   br
+  p There are #{consensus.authorities.length} authorities currently in the network concensus.
+  br
   p There are #{consensus.routers.length} routers currently in the network concensus.
   br
   p
-    table.table-striped.table-bordered
+    table.table-striped.table-bordered.tlbigtable
         tr
             th #
-            th Name
+            th.nameColumn Name
             th Location
             th IP
         each router, index in consensus.routers
             tr
-                td= index
-                td= router.name
+                td.indexHeader= index
+                td.nameColumn= router.name
                 td= router.geoString
                 //- if router.geo.city
                 //-     td= router.geoString
