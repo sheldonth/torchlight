@@ -159,11 +159,22 @@ exports.torrouter = class torrouter
 
 exports.torauthority = class torauthority
   constructor: (@sourceLine) ->
-    console.log @sourceLine
+    sourceElements = @sourceLine.split ' '
+    @nickname = sourceElements[1]
+    @identity = sourceElements[2]
+    @address = sourceElements[3]
+    @IP = sourceElements[4]
+    @dirPort = sourceElements[5]
+    @orPort = sourceElements[6]
+  
+  setContactLine: (@contactLine) =>
+    
+
+  setVoteDigestLine: (@voteDigestLine) =>
+    components = @voteDigestLine.split ' '
+    @voteDigest = components[1]
 
 # this class is a representation of the cached-consensus file
-  
-  
 exports.torconsensus = class torconsensus
   constructor: () ->
     if process.env.production
@@ -262,11 +273,11 @@ exports.torconsensus = class torconsensus
       else
         # if it starts with dir-source then start a new authority object
         if sl.contains("dir-source")
-          lastAuthority = new torauthority(sourceLine:line)
+          lastAuthority = new torauthority(line)
         else if sl.contains("contact")
-          lastAuthority.contactLine = line
+          lastAuthority.setContactLine line
         else if sl.contains("vote-digest")
-          lastAuthority.voteDigest = line
+          lastAuthority.setVoteDigestLine line
           @authorities.push lastAuthority
       @readIndex++
     
